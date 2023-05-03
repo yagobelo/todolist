@@ -1,12 +1,25 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const Task = require("./models/Task");
 require("dotenv").config();
+
+// ------------------------------------------------------------------
 
 app.use(express.json());
 
+// ------------------------------------------------------------------ Defined router: /task
+
 const taskRoutes = require("../src/routes/taskRoutes");
 app.use("/task", taskRoutes);
+
+// ------------------------------------------------------------------ Endpoint
+
+app.get("/", (req, res) => {
+  res.status(200).send("Hello World!");
+});
+
+// ------------------------------------------------------------------ Open conection with server and mongoDB
 
 const DB_URI = process.env.DB_URI;
 const PORT = process.env.PORT;
