@@ -17,11 +17,17 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ------------------------------------------------------------------------ Read all tasks
+// ------------------------------------------------------------------------ Read all tasks to a tasks from status
 
 router.get("/", async (req, res) => {
-  const tasks = await Task.find();
-  res.status(200).json(tasks);
+  const status = req.query.status;
+  if (!status) {
+    const tasks = await Task.find();
+    return res.status(200).json(tasks);
+  } else {
+    const tasks = await Task.find({ status: status });
+    return res.status(200).json(tasks);
+  }
 });
 
 // ------------------------------------------------------------------------ Read one task from id
@@ -36,13 +42,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// ------------------------------------------------------------------------- Read tasks from params(complet)
-
-router.get("/complet/:complet", async (req, res) => {
-  const tasks = await Task.find({ complet: req.params.complet });
-  res.status(200).json(tasks);
-});
-
 // ------------------------------------------------------------------------ Update task from id
 
 router.patch("/:id", async (req, res) => {
@@ -50,7 +49,7 @@ router.patch("/:id", async (req, res) => {
   const task = {
     title: req.body.title,
     description: req.body.description,
-    complet: req.body.complet,
+    status: req.body.status,
   };
 
   try {

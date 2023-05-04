@@ -8,9 +8,9 @@ const TaskSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  complet: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    default: "nao-concluida",
   },
 });
 
