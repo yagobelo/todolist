@@ -4,12 +4,17 @@ const Task = require("../models/Task");
 // ------------------------------------------------------------------------ Insert new task
 
 router.post("/", async (req, res) => {
-  const newTask = {
-    title: req.body.title,
-    description: req.body.description,
-  };
+  const { title, description } = req.body;
 
   try {
+    const taskExist = await Task.findOne({ title: title });
+    if (taskExist) {
+      return res.status(422).json("Ja existe uma tarefa com esse nome!");
+    }
+    const newTask = {
+      title: req.body.title,
+      description: req.body.description,
+    };
     await Task.create(newTask);
     res.status(201).json(newTask);
   } catch (error) {
