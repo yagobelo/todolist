@@ -8,7 +8,7 @@ Objetivo: Desenvolver uma API RESTful em JavaScript que permita o gerenciamento 
 2. Deve ser possível criar uma nova tarefa, informando apenas a descrição da tarefa
 3. Deve ser possível listar todas as tarefas
 4. Deve ser possível atualizar a descrição de uma tarefa existente
-5. Deve ser possível marcar uma tarefa como concluída, mudando o status da tarefa para "concluído" / Troquei o "status" para "complet" sendo um valor booleano
+5. Deve ser possível marcar uma tarefa como concluída, mudando o status da tarefa para "concluído"
 6. Deve ser possível remover uma tarefa
 7. Deve ser possível listar tarefas filtrando por status (todas, concluídas ou não concluídas)
 
