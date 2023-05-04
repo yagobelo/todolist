@@ -65,7 +65,10 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    await Task.deleteOne({ _id: id });
+    const taskdelete = await Task.deleteOne({ _id: id });
+    if (!taskdelete) {
+      return res.status(422).json("Essa tarefa não existe!");
+    }
     res.status(200).json("Task deleted ");
   } catch (error) {
     res.status(500).json("Error to delete task: " + error);
